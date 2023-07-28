@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-mdalbes"
+    bucket   = "tfstate-bucket-umbrella"
     key      = "tfstate/terraform.tfstate-ec2"
     region   = "us-east-1"
 
@@ -42,6 +42,7 @@ data "aws_subnet" "my_public_subnet_2" {
     values = ["public-b"]
   }
 }
+
 
 #############################################################
 ##################     Instance     #########################
@@ -113,23 +114,27 @@ resource "aws_security_group" "allow_tls" {
 module "instance_1" {
   source = "../../module/ec2_instance"
   name                        = "Instance1"
-  ami_filter                  = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+  ami_filter                  =  "amzn2-ami-kernel-5.10-hvm-*"
   instance_type               = "t2.micro"
   subnet_id                   = data.aws_subnet.my_public_subnet_1.id
   key_name                    = aws_key_pair.instance.key_name
   vpc_security_group_ids      = [aws_security_group.allow_tls.id]
   associate_public_ip_address = true
+  user_data = file("./script.sh")
+
 }
 
-
+#Instance 2
 module "instance_2" {
   source = "../../module/ec2_instance"
   name                        = "Instance2"
-  ami_filter                  = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+  ami_filter                  = "amzn2-ami-kernel-5.10-hvm-*"
   instance_type               = "t2.micro"
   subnet_id                   = data.aws_subnet.my_public_subnet_2.id
   key_name                    = aws_key_pair.instance.key_name
   vpc_security_group_ids      = [aws_security_group.allow_tls.id]
   associate_public_ip_address = true
+  user_data = file("./vulnscript.sh")
+
 }
 
