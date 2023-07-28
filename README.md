@@ -6,7 +6,7 @@ How to use module in Terraform, here is an example of a VPC with VPC flowlogs ac
 ![Screenshot](terraform_module_design.drawio.png)
 
 # Design Prisma
-![Screenshot](prisma_design.png)
+![Screenshot](umbrella.png)
 
 # Requirements
 - 1°)Install Terraform
