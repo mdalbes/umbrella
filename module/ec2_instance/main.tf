@@ -13,6 +13,8 @@ resource "aws_instance" "this" {
   monitoring             = var.monitoring
   vpc_security_group_ids = var.vpc_security_group_ids
   iam_instance_profile   = var.iam_instance_profile
+  private_ip             = var.private_ip
+
 
   associate_public_ip_address = var.associate_public_ip_address
 
@@ -92,11 +94,36 @@ resource "aws_instance" "this" {
     # (eg, https://github.com/terraform-providers/terraform-provider-aws/issues/2036)
     # we have to ignore changes in the following arguments
     ignore_changes = [
-      private_ip,
       vpc_security_group_ids,
       root_block_device,
       ami,
     ]
+  }
+
+  
+   provisioner "file" {
+    source      = "./${var.key_name}.pem"
+    destination = "/home/ec2-user/${var.key_name}.pem"
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("${var.key_name}.pem")
+      host        = self.public_ip
+    }
+  }
+  
+  //chmod key 400 on EC2 instance
+  provisioner "remote-exec" {
+    inline = ["chmod 400 ~/${var.key_name}.pem"]
+
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("${var.key_name}.pem")
+      host        = self.public_ip
+    }
+
   }
 }
 
@@ -120,4 +147,6 @@ data "aws_ami" "ami_filter" {
     name   = "root-device-type"
     values = ["ebs"]
   }
+
+
 }

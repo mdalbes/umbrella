@@ -1,11 +1,7 @@
-# Terraform_module
-How to use module in Terraform, here is an example of a VPC with VPC flowlogs activated and 2 EC2 Instances
+# Umbrella Game
+This repository aims to deploy the infrastructure necessary to perform a game to learn the use of Prisma Cloud
 
-
-# Design AWS
-![Screenshot](terraform_module_design.drawio.png)
-
-# Design Prisma
+# Umbrella Retailer
 ![Screenshot](umbrella.png)
 
 # Requirements

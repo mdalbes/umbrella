@@ -1,0 +1,5 @@
+ToDo : 
+
+- transformer 03_eks_cluster avec module
+- Utiliser la variable random integer partout
+- Faire marcher le 04_kubernetes

@@ -121,6 +121,7 @@ module "instance_1" {
   vpc_security_group_ids      = [aws_security_group.allow_tls.id]
   associate_public_ip_address = true
   user_data = file("./script.sh")
+  private_ip                  = "10.0.0.11"
 
 }
 
@@ -135,6 +136,30 @@ module "instance_2" {
   vpc_security_group_ids      = [aws_security_group.allow_tls.id]
   associate_public_ip_address = true
   user_data = file("./vulnscript.sh")
+  private_ip                  = "10.0.1.12"
 
 }
 
+
+#Instance 3
+data "template_file" "user-data-file" {
+  template = "${file("${path.module}/user-data-instance3")}"
+
+  vars = {
+    s3Backet = module.variables.tfstate_bucket_name
+  }
+}
+
+module "instance_3" {
+  source = "../../module/ec2_instance"
+  name                        = "Instance3-mongoDbServer"
+  ami_filter                  = "amzn2-ami-kernel-5.10-hvm-*"
+  instance_type               = "t2.micro"
+  subnet_id                   = data.aws_subnet.my_public_subnet_1.id
+  key_name                    = aws_key_pair.instance.key_name
+  vpc_security_group_ids      = [aws_security_group.allow_tls.id]
+  associate_public_ip_address = true
+  private_ip                  = "10.0.0.13"
+  user_data                   =  "${data.template_file.user-data-file.rendered}"
+
+}

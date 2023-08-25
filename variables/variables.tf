@@ -12,7 +12,7 @@ output "region" {
 
 variable "username" {
   type = string
-  default = "acloudguru"
+  default = "default"
 }
 output "username" {
   value = var.username
@@ -25,7 +25,7 @@ output "username" {
 
 variable "tfstate_bucket_name" {
   type    = string
-  default = "tfstate-bucket-mdalbes"
+  default = "tfstate-bucket-umbrella"
 }
 
 output "tfstate_bucket_name" {
@@ -35,7 +35,7 @@ output "tfstate_bucket_name" {
 
 variable "dynamodb_name" {
   type    = string
-  default = "tfstate-dynamodb-mdalbes"
+  default = "tfstate-dynamodb-umbrella"
 }
 
 output "dynamodb_name" {
@@ -49,7 +49,7 @@ output "dynamodb_name" {
 variable "key_name" {
   description = "Name of the Instance keyname"
   type        = string
-  default     = "mdalbes-instance"
+  default     = "umbrella-instance"
 }
 
 output "key_name" {
@@ -61,7 +61,7 @@ output "key_name" {
 variable "filename" {
   description = "pem Path"
   type        = string
-  default     = "C:\\Users\\mdalbes\\Desktop\\repo\\Terraform_module\\mdalbes-instance.pem"
+  default     = ".\\.\\umbrella-instance.pem"
 }
 
 output "filename" {
@@ -71,7 +71,7 @@ output "filename" {
 variable "myIP" {
   description = "myIP"
   type        = string
-  default     = "52.47.138.194/32"
+  default     = "35.181.123.80/32"
 }
 
 output "myIP" {
@@ -94,7 +94,7 @@ output "vpc_cidrs" {
 }
 variable "vpc_name" {
   type = string
-  default = "Terraform_module_VPC"   
+  default = "umbrella_vpc"   
   }
 
 
@@ -199,7 +199,7 @@ output "aws_account_id_1" {
 
 variable "prisma_aws_account_name_1" {
   type = string
-  default = "mdalbes-terraform-account-prisma-10"
+  default = "umbrella-terraform-account-prisma-1"
 }
 output "prisma_aws_account_name_1" {
   value = var.prisma_aws_account_name_1
@@ -207,7 +207,7 @@ output "prisma_aws_account_name_1" {
 
 variable "existing_account_group_name_1" {
   type = string
-  default = "mdalbes-acg-lab-10"
+  default = "umbrella-acg-lab-1"
 }
 
 
@@ -217,7 +217,7 @@ output "existing_account_group_name_1" {
 
 variable "new_account_group_name_1" {
   type = string
-  default = "mdalbes-acg-lab-10"
+  default = "umbrella-acg-lab-1"
 }
 
 output "new_account_group_name_1" {
@@ -230,7 +230,7 @@ output "new_account_group_name_1" {
 
 variable "policy_name_1" {
   type = string
-  default = "policy_non_web_port_open_mdalbes-10"
+  default = "policy_non_web_port_open_umbrella-1"
 }
 output "policy_name_1" {
   value = var.policy_name_1
@@ -238,7 +238,7 @@ output "policy_name_1" {
 
 variable "rule_name_1" {
   type = string
-  default = "rule_non_web_port_open_mdalbes-10"
+  default = "rule_non_web_port_open_umbrella-1"
 }
 output "rule_name_1" {
   value = var.rule_name_1
@@ -255,7 +255,7 @@ output "search_type_1" {
 
 variable "savedsearch_name_1" {
   type = string
-  default = "saved query non web 10"
+  default = "saved query non web 1"
 }
 output "savedsearch_name_1" {
   value = var.savedsearch_name_1
@@ -303,7 +303,7 @@ output "rule_type_1" {
 
 variable "alert_rule_name_1" {
   type = string
-  default =  "mdalbes-non-web-port-open-alert"
+  default =  "umbrella-non-web-port-open-alert"
 }
 output "alert_rule_name_1" {
   value = var.alert_rule_name_1
@@ -328,5 +328,3 @@ output "notification_recipients" {
   value = var.notification_recipients
 
 }
-
-

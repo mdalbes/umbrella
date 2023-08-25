@@ -4,7 +4,7 @@ module "variables" {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-mdalbes"
+    bucket   = "tfstate-bucket-umbrella"
     key      = "tfstate/terraform.tfstate-prisma-new-policy"
     region   = "us-east-1"
 
