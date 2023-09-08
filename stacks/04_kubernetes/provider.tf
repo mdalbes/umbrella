@@ -13,7 +13,27 @@ terraform {
       version = ">= 2.0.1"
     }
   }
+
+   backend "s3" {
+    bucket   = "tfstate-bucket-umbrella"
+    key      = "tfstate/terraform.tfstate-kub"
+    region   = "us-east-1"
+
+  }
 }
+
+data "terraform_remote_state" "eks" {
+  backend = "s3"
+
+  config = {
+    bucket  = module.variables.tfstate_bucket_name
+    key = "tfstate/terraform.tfstate-eks"
+    region = "us-east-1"
+  }
+}
+
+
+
 
 provider aws {
   region  = module.variables.region
