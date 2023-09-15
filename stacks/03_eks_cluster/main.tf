@@ -51,7 +51,7 @@ resource "aws_eks_cluster" "Umbrella-EKS-Cluster" {
 
   name     = "Umbrella-EKS-Cluster-${random_integer.unique_id.id}"
   role_arn = aws_iam_role.Umbrella-AmazonEKSClusterRole.arn
-  version  = "1.23"
+  version  = "1.27"
 
   vpc_config {
     endpoint_private_access = "false"
@@ -179,6 +179,10 @@ POLICY
   path                 = "/"
 }
 
+data "aws_ssm_parameter" "eks_ami_release_version" {
+  name = "/aws/service/eks/optimized-ami/${aws_eks_cluster.Umbrella-EKS-Cluster.version}/amazon-linux-2/recommended/release_version"
+}
+
 
 resource "aws_eks_node_group" "Umbrella-EKS-NodeGrp" {
   ami_type        = "AL2_x86_64"
@@ -188,7 +192,7 @@ resource "aws_eks_node_group" "Umbrella-EKS-NodeGrp" {
   instance_types  = ["t3.medium"]
   node_group_name = "Umbrella-EKS-NodeGrp-${random_integer.unique_id.id}"
   node_role_arn   = aws_iam_role.Umbrella-AmazonEKSNodeRole.arn
-  release_version = "1.23.7-20220802"
+  release_version = nonsensitive(data.aws_ssm_parameter.eks_ami_release_version.value)
 
   scaling_config {
     desired_size = "2"
@@ -202,5 +206,5 @@ resource "aws_eks_node_group" "Umbrella-EKS-NodeGrp" {
     max_unavailable = "1"
   }
 
-  version = "1.23"
+  version = "1.27"
 }
