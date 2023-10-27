@@ -5,10 +5,10 @@ This repository aims to deploy the infrastructure necessary to perform a game to
 ![Screenshot](umbrella.png)
 
 # Umbrella-AWS design
-![Screenshot](Umbrella-AWS design.drawio.png)
+![Screenshot](aws-design.png)
 
 # Umbrella-Prisma design 
-![Screenshot](Umbrella-Prisma design.drawio.png)
+![Screenshot](prisma-design.png)
 
 # Requirements
 - 1°)Install Terraform + Terragrunt
