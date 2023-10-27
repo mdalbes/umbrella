@@ -59,7 +59,7 @@ sudo systemctl restart mongod
 
 
 TIMESTAMP=`date +%F-%H%M`
-S3_BUCKET_NAME="tfstate-bucket-umbrella-8057"
+S3_BUCKET_NAME="tfstate-bucket-umbrella-0000"
 S3_BUCKET_PATH="mongo_backup"
 
 # Create backup

@@ -2,4 +2,36 @@ ToDo :
 
 - transformer 03_eks_cluster avec module
 - Utiliser la variable random integer partout
-- Faire marcher le 04_kubernetes
+- modifier le word press de kub
+
+Faire avec un script shell le random et l'intégrer dans le hcl https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#run_cmd
+
+https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/
+
+pour que les S3 remote tf state soit différent tout le temps 
+
+
+
+
+
+
+aws eks update-kubeconfig --region us-east-1 --name Umbrella-EKS-Cluster-xxxx
+
+$ kubectl get all
+
+
+terragrunt run-all apply
+
+Remettre le bloc : 
+
+
+# terraform {
+#   backend "s3" {
+#     bucket   = "tfstate-bucket-umbrella"
+#     key      = "tfstate/terraform.tfstate-ec2"
+#     region   = "us-east-1"
+
+#   }
+# }
+
+mais il faut modifier la partie bucket avec le script

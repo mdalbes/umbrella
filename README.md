@@ -4,10 +4,16 @@ This repository aims to deploy the infrastructure necessary to perform a game to
 # Umbrella Retailer
 ![Screenshot](umbrella.png)
 
+# Umbrella-AWS design
+![Screenshot](Umbrella-AWS design.drawio.png)
+
+# Umbrella-Prisma design 
+![Screenshot](Umbrella-Prisma design.drawio.png)
+
 # Requirements
-- 1°)Install Terraform
-- 2°)Go ACloudGuru through Okta => Playground => Start AWS Sandbox
-- 3°) Modify you credentials file with your access key secret key for [default] and create the same with [acloudguru]
+- 1°)Install Terraform + Terragrunt
+- 2°) Go ACloudGuru through Okta => Playground => Start AWS Sandbox
+- 3°) Modify you credentials file with your access key secret key for [default] 
 - 4°) Create your own .pem key in repository "Terraform_module"
 - 5°) In your file variables.tf ==> Modify variables "tfstate_bucket_name" , "dynamodb_name", "key_name", "filename", "myIP" with your own value.
 
@@ -15,22 +21,8 @@ This repository aims to deploy the infrastructure necessary to perform a game to
 
 # Deployement
 - 1°)  Remote state
-- go to Terraform_module/stacks/00_remote_state
-- terraform init
-- terraform plan 
-- terraform apply -auto-approve
-
-- 2°) VPC
-- cd ../01_vpc
-- terraform init
-- terraform plan 
-- terraform apply -auto-approve
-
-- 3°) EC2
-- cd ../02_ec2
-- terraform init
-- terraform plan 
-- terraform apply -auto-approve
+- go to Umbrella\stacks
+- terragrunt run-all apply
 
 
  4°) Prisma Onboard account

@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-8057"
+    bucket   = "tfstate-bucket-umbrella-0000"
     key      = "tfstate/terraform.tfstate-ec2"
     region   = "us-east-1"
 
@@ -40,13 +40,6 @@ data "aws_subnet" "my_public_subnet_2" {
   filter {
     name = "tag:Name"
     values = ["public-b"]
-  }
-}
-
-data "aws_subnet" "my_database_subnet_1" {
-  filter {
-    name = "tag:Name"
-    values = ["database-a"]
   }
 }
 
@@ -166,11 +159,11 @@ module "instance_3" {
   name                        = "Instance3-mongoDbServer"
   ami_filter                  = "amzn2-ami-kernel-5.10-hvm-*"
   instance_type               = "t2.micro"
-  subnet_id                   = data.aws_subnet.my_database_subnet_1.id
+  subnet_id                   = data.aws_subnet.my_public_subnet_1.id
   key_name                    = aws_key_pair.instance.key_name
   vpc_security_group_ids      = [aws_security_group.allow_tls.id]
   associate_public_ip_address = true
-  private_ip                  = "10.0.4.13"
+  private_ip                  = "10.0.0.13"
   user_data                   =  "${data.template_file.user-data-file.rendered}"
 
 }

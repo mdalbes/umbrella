@@ -2,6 +2,12 @@
 ####################  provider  #############################
 #############################################################
 
+resource "random_integer" "unique_id" {
+  min = 1000
+  max = 9999
+}
+
+
 variable "region" {
   type = string
   default = "us-east-1"
@@ -23,14 +29,14 @@ output "username" {
 #############################################################
 
 
-variable "tfstate_bucket_name" {
-  type    = string
-  default = "tfstate-bucket-umbrella"
-}
+# variable "tfstate_bucket_name" {
+#   type    = string
+#   default = "tfstate-bucket-umbrella"
+# }
 
-output "tfstate_bucket_name" {
-  value = var.tfstate_bucket_name
-}
+# output "tfstate_bucket_name" {
+#   value = var.tfstate_bucket_name
+# }
 
 
 variable "dynamodb_name" {
@@ -71,7 +77,7 @@ output "filename" {
 variable "myIP" {
   description = "myIP"
   type        = string
-  default     = "35.181.123.80/32"
+  default     = "15.188.91.151/32"
 }
 
 output "myIP" {
