@@ -197,19 +197,13 @@ output "public_subnet_name" {
 
 variable "aws_account_id_1" {
   type = string
-  default = "293440400647"
+  default = "068328049338"
 }
 output "aws_account_id_1" {
   value = var.aws_account_id_1
 }
 
-variable "prisma_aws_account_name_1" {
-  type = string
-  default = "umbrella-terraform-account-prisma-1"
-}
-output "prisma_aws_account_name_1" {
-  value = var.prisma_aws_account_name_1
-}
+
 
 variable "existing_account_group_name_1" {
   type = string
@@ -221,34 +215,8 @@ output "existing_account_group_name_1" {
   value = var.existing_account_group_name_1
 }
 
-variable "new_account_group_name_1" {
-  type = string
-  default = "umbrella-acg-lab-1"
-}
-
-output "new_account_group_name_1" {
-  value = var.new_account_group_name_1
-}
-
 
 #######   Policy 1     ########
-
-
-variable "policy_name_1" {
-  type = string
-  default = "policy_non_web_port_open_umbrella-1"
-}
-output "policy_name_1" {
-  value = var.policy_name_1
-}
-
-variable "rule_name_1" {
-  type = string
-  default = "rule_non_web_port_open_umbrella-1"
-}
-output "rule_name_1" {
-  value = var.rule_name_1
-}
 
 
 variable "search_type_1" {
@@ -257,15 +225,6 @@ variable "search_type_1" {
 }
 output "search_type_1" {
   value = var.search_type_1
-}
-
-variable "savedsearch_name_1" {
-  type = string
-  default = "saved query non web 1"
-}
-output "savedsearch_name_1" {
-  value = var.savedsearch_name_1
-
 }
 
 variable "unit_1" {
@@ -306,15 +265,6 @@ output "rule_type_1" {
 
 
 #######   Alert 1     ########
-
-variable "alert_rule_name_1" {
-  type = string
-  default =  "umbrella-non-web-port-open-alert"
-}
-output "alert_rule_name_1" {
-  value = var.alert_rule_name_1
-
-}
 
 
 variable "notification_config_type" {

@@ -59,3 +59,32 @@ $NewFileConfig04Kubernetes = '.\04_kubernetes\provider.tf'
 Get-Item -Path $config04Kubernetes
 Copy-Item -Path $config04Kubernetes -Destination $NewFileConfig04Kubernetes
 (Get-Content $NewFileConfig04Kubernetes).replace($find, $replace) | Set-Content $NewFileConfig04Kubernetes
+
+
+############ Config Prisma onboard account   ############
+
+
+$config13PrismaOnboardAccount = '.\13_prisma_onboard_account\template-main'
+$NewFileConfig13PrismaOnboardAccount = '.\13_prisma_onboard_account\main.tf'
+Get-Item -Path $config13PrismaOnboardAccount
+Copy-Item -Path $config13PrismaOnboardAccount -Destination $NewFileConfig13PrismaOnboardAccount
+(Get-Content $NewFileConfig13PrismaOnboardAccount).replace($find, $replace) | Set-Content $NewFileConfig13PrismaOnboardAccount
+
+
+############ Config Prisma New policy   ############
+
+
+$config14PrismaNewPolicy = '.\14_prisma_new_policy\template-main'
+$NewFileConfig14PrismaNewPolicy = '.\14_prisma_new_policy\main.tf'
+Get-Item -Path $config14PrismaNewPolicy
+Copy-Item -Path $config14PrismaNewPolicy -Destination $NewFileConfig14PrismaNewPolicy
+(Get-Content $NewFileConfig14PrismaNewPolicy).replace($find, $replace) | Set-Content $NewFileConfig14PrismaNewPolicy
+
+############ Config Prisma Alert Rule   ############
+
+
+$config15PrismaAlertRule = '.\15_prisma_alert_rule\template-main'
+$NewFileConfig15PrismaAlertRule = '.\15_prisma_alert_rule\main.tf'
+Get-Item -Path $config15PrismaAlertRule
+Copy-Item -Path $config15PrismaAlertRule -Destination $NewFileConfig15PrismaAlertRule
+(Get-Content $NewFileConfig15PrismaAlertRule).replace($find, $replace) | Set-Content $NewFileConfig15PrismaAlertRule

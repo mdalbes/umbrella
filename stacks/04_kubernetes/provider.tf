@@ -15,7 +15,7 @@ terraform {
   }
 
    backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-8057"
+    bucket   = "tfstate-bucket-umbrella-8294"
     key      = "tfstate/terraform.tfstate-kub"
     region   = "us-east-1"
 
@@ -26,7 +26,7 @@ data "terraform_remote_state" "eks" {
   backend = "s3"
 
   config = {
-    bucket  = "tfstate-bucket-umbrella-8057"
+    bucket  = "tfstate-bucket-umbrella-8294"
     key = "tfstate/terraform.tfstate-eks"
     region = "us-east-1"
   }
