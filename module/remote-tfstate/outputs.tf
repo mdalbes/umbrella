@@ -8,7 +8,6 @@ output "s3_bucket_id" {
   description = "S3 bucket ID"
 }
 
-
 output "s3_bucket_arn" {
   value       = aws_s3_bucket.tfstate_bucket.arn
   description = "S3 bucket ARN"

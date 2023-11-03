@@ -1,26 +1,8 @@
 ToDo : 
 
 - transformer 03_eks_cluster avec module
-- ajouter la partie Jenkins
-- Tester la partie Prisma ( tester avec Darwin PCS Lab)
+- ajouter la partie Jenkins ( déjà push mais ne marche pas, il faut regarder pour changer le userdata avec une ami aws et utiliser le module déjà en place.)
+- regarder ce que font les scripts dans instances
+- tenter de se connecter au cluster, ensuite au jenkins, puis au wordpress
+- regarder la policy prisma et l'alerte si c'est ok
 - faire le ppt 
-- faire le requierement ( attribut variables à modifier)
-
-
-Faire avec un script shell le random et l'intégrer dans le hcl https://terragrunt.gruntwork.io/docs/reference/built-in-functions/#run_cmd
-
-https://terragrunt.gruntwork.io/docs/features/keep-your-remote-state-configuration-dry/
-
-pour que les S3 remote tf state soit différent tout le temps 
-
-
-
-
-aws eks update-kubeconfig --region us-east-1 --name Umbrella-EKS-Cluster-xxxx
-
-$ kubectl get all
-
-
-terragrunt run-all apply
-
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass

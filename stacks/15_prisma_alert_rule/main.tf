@@ -5,7 +5,7 @@ module "variables" {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella"
+    bucket   = "tfstate-bucket-umbrella-5289"
     key      = "tfstate/terraform.tfstate-prisma-alert-rule"
     region   = "us-east-1"
 
@@ -28,9 +28,9 @@ provider "prismacloud" {
 
 module "policy_1" {
   source            = "../../module/prisma_alert"
-  policy_name                    = module.variables.policy_name_1
+  policy_name                    = "policy-umbrella-5289"
   existing_account_group_name    = module.variables.existing_account_group_name_1
-  alert_rule_name                = module.variables.alert_rule_name_1 
+  alert_rule_name                = "alert-rule-non-web-port-open-alert-umbrella-5289" 
   notification_config_type       = module.variables.notification_config_type
   notification_recipients        = module.variables.notification_recipients
 }

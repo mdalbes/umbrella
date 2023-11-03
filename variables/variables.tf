@@ -1,11 +1,58 @@
+
+#############################################################
+###############   Instances @IP to fill #####################
+#############################################################
+
+
+variable "myIP" {
+  description = "myIP"
+  type        = string
+  default     = "35.181.150.96/32"
+}
+
+output "myIP" {
+  value = var.myIP
+}
+
+
+#############################################################
+###############   Prisma To fill      #######################
+#############################################################
+
+#######   Account ID 1     ########
+
+
+variable "aws_account_id_1" {
+  type = string
+  default = "667529724652"
+}
+output "aws_account_id_1" {
+  value = var.aws_account_id_1
+}
+
+#######   Alert notification Email     ########
+
+variable "notification_recipients" {
+  type = list(string)
+  default =  ["mdalbes@paloaltonetworks.com"]
+}
+output "notification_recipients" {
+  value = var.notification_recipients
+
+}
+
+
+
+
+
+
+
+
+
+
 #############################################################
 ####################  provider  #############################
 #############################################################
-
-resource "random_integer" "unique_id" {
-  min = 1000
-  max = 9999
-}
 
 
 variable "region" {
@@ -24,29 +71,6 @@ output "username" {
   value = var.username
 }
 
-#############################################################
-################     Remote_state      ######################
-#############################################################
-
-
-# variable "tfstate_bucket_name" {
-#   type    = string
-#   default = "tfstate-bucket-umbrella"
-# }
-
-# output "tfstate_bucket_name" {
-#   value = var.tfstate_bucket_name
-# }
-
-
-variable "dynamodb_name" {
-  type    = string
-  default = "tfstate-dynamodb-umbrella"
-}
-
-output "dynamodb_name" {
-  value = var.dynamodb_name
-}
 
 #############################################################
 ####################   Instances   ##########################
@@ -74,15 +98,6 @@ output "filename" {
   value = var.filename
 }
 
-variable "myIP" {
-  description = "myIP"
-  type        = string
-  default     = "15.188.91.151/32"
-}
-
-output "myIP" {
-  value = var.myIP
-}
 
 
 #############################################################
@@ -192,16 +207,6 @@ output "public_subnet_name" {
 #############################################################
 
 
-#######   Account ID 1     ########
-
-
-variable "aws_account_id_1" {
-  type = string
-  default = "068328049338"
-}
-output "aws_account_id_1" {
-  value = var.aws_account_id_1
-}
 
 
 
@@ -276,11 +281,3 @@ output "notification_config_type" {
 
 }
 
-variable "notification_recipients" {
-  type = list(string)
-  default =  ["mdalbes@paloaltonetworks.com"]
-}
-output "notification_recipients" {
-  value = var.notification_recipients
-
-}

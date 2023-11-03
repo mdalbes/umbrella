@@ -37,4 +37,4 @@ private_key.pem
 
 
 # ignore *.pem
-*.hcl
+*.terraform.lock.hcl

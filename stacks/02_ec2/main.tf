@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-8294"
+    bucket   = "tfstate-bucket-umbrella-5289"
     key      = "tfstate/terraform.tfstate-ec2"
     region   = "us-east-1"
 
@@ -157,7 +157,7 @@ data "template_file" "user-data-file" {
 module "instance_3" {
   source = "../../module/ec2_instance"
   name                        = "Instance3-mongoDbServer"
-  ami_filter                  = "amzn2-ami-kernel-5.10-hvm-*"
+  ami_filter                  = "aws-parallelcluster-3.6.1-ubuntu-2004-lts-hvm-x86_64-202306301211 2023-06-30T12-15-13.119Z"
   instance_type               = "t2.micro"
   subnet_id                   = data.aws_subnet.my_public_subnet_1.id
   key_name                    = aws_key_pair.instance.key_name
@@ -166,4 +166,81 @@ module "instance_3" {
   private_ip                  = "10.0.0.13"
   user_data                   =  "${data.template_file.user-data-file.rendered}"
 
+}
+
+
+#Instance 4 Jenkins
+
+data "aws_ami" "ubuntu" {
+    most_recent = true
+
+    filter {
+        name   = "name"
+        values = ["amzn2-ami-kernel-5.10-hvm-*"]
+    }
+    filter {
+        name   = "virtualization-type"
+        values = ["hvm"]
+    }
+
+   #  owners = ["137112412989"] # Canonical
+}
+
+resource "aws_security_group" "jenkins-sg" {
+  vpc_id      = data.aws_vpc.myVPC.id
+  name        = "jenkins-sg"
+  description = "inbound ports for ssh and standard http and everything outbound"
+  dynamic "ingress" {
+    for_each = [8080, 22]
+    content {
+      protocol    = "tcp"
+      from_port   = ingress.value
+      to_port     = ingress.value
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  tags = {
+    "Name"      = "jenkins-sg"
+    "Terraform" = "true"
+  }
+}
+
+
+
+
+resource "aws_instance" "jenkins" {
+  ami             = data.aws_ami.ubuntu.id
+ 
+  instance_type   = "t2.micro"
+  subnet_id = data.aws_subnet.my_public_subnet_1.id
+  vpc_security_group_ids  = [aws_security_group.jenkins-sg.id]
+  key_name        = aws_key_pair.instance.key_name
+  provisioner "remote-exec" {
+    inline = [
+      "curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee  /usr/share/keyrings/jenkins-keyring.asc > /dev/null",
+      "echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee  /etc/apt/sources.list.d/jenkins.list > /dev/null",
+      "sudo apt-get update",
+      "sudo apt update",
+      "sudo apt install openjdk-11-jre -y",
+      "sudo apt-get install jenkins -y",
+    ]
+  }
+  connection {
+    type        = "ssh"
+    host        = self.public_ip
+    user        = "ubuntu"
+    private_key = file("umbrella-instance.pem")
+    agent = false
+
+  }
+  tags = {
+    "Name" = "Jenkins"
+  }
 }
