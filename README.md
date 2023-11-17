@@ -16,6 +16,7 @@ This repository aims to deploy the infrastructure necessary to perform a game to
 - 3°) Install Terraform + Terragrunt
 - 4°) Create your own umbrella-instance.pem key in repository "02_ec2"
 - 5°) In your file variables.tf ==> Modify variables "myIP" , "aws_account_id_1", "notification_recipients" with your own value.
+- 6°) Create your own file prismacloud_auth.json in each Prisma_Cloud stack
 
 
 
@@ -25,12 +26,14 @@ This repository aims to deploy the infrastructure necessary to perform a game to
 
 
 # Commands
-
-aws eks update-kubeconfig --region us-east-1 --name Umbrella-EKS-Cluster-xxxx
-
-$ kubectl get all
-
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 terragrunt run-all apply
 
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+aws eks update-kubeconfig --region us-east-1 --name EKS-Cluster-umbrella-XXXX
+kubectl get all
+
+
+# Jenkins
+Connect on port http://@ip:8080
+Find password sudo su 

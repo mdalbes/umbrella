@@ -93,44 +93,139 @@ Copy-Item -Path $config15PrismaAlertRule -Destination $NewFileConfig15PrismaAler
 
 
 ############ Clean TFstate  ############
-
+If (Test-Path .\00_remote_state\.terraform.lock.hcl) {
 Remove-Item -Path .\00_remote_state\.terraform.lock.hcl
+}
+
+If (Test-Path .\00_remote_state\terraform.tfstate) {
 Remove-Item -Path .\00_remote_state\terraform.tfstate
+}
+
+If (Test-Path .\00_remote_state\terraform.tfstate.backup) {
 Remove-Item -Path .\00_remote_state\terraform.tfstate.backup
-Remove-Item -Recurse -Force .\00_remote_state\.terraform
+}
 
+If (Test-Path .\00_remote_state\.terraform) {
+Remove-Item -Recurse -Force  .\00_remote_state\.terraform
+}
+
+#__________________________________________________________________
+
+If (Test-Path .\01_vpc\.terraform.lock.hcl) {
 Remove-Item -Path .\01_vpc\.terraform.lock.hcl
+}
+
+If (Test-Path .\01_vpc\terraform.tfstate) {
 Remove-Item -Path .\01_vpc\terraform.tfstate
+}
+
+If (Test-Path .\01_vpc\terraform.tfstate.backup) {
 Remove-Item -Path .\01_vpc\terraform.tfstate.backup
+}
+
+If (Test-Path .\01_vpc\.terraform) {
 Remove-Item -Recurse -Force .\01_vpc\.terraform
+}
 
+#__________________________________________________________________
 
+If (Test-Path .\02_ec2\.terraform.lock.hcl) {
 Remove-Item -Path .\02_ec2\.terraform.lock.hcl
+}
+
+If (Test-Path .\02_ec2\terraform.tfstate) {
 Remove-Item -Path .\02_ec2\terraform.tfstate
+}
+
+If (Test-Path .\02_ec2\terraform.tfstate.backup) {
 Remove-Item -Path .\02_ec2\terraform.tfstate.backup
+}
+
+If (Test-Path .\02_ec2\.terraform) {
 Remove-Item -Recurse -Force .\02_ec2\.terraform
+}
+#__________________________________________________________________
 
+If (Test-Path .\03_eks_cluster\.terraform.lock.hcl) {
 Remove-Item -Path .\03_eks_cluster\.terraform.lock.hcl
+}
+
+If (Test-Path .\03_eks_cluster\terraform.tfstate) {
 Remove-Item -Path .\03_eks_cluster\terraform.tfstate
+}
+
+If (Test-Path .\03_eks_cluster\terraform.tfstate.backup) {
 Remove-Item -Path .\03_eks_cluster\terraform.tfstate.backup
+}
+
+If (Test-Path .\03_eks_cluster\.terraform) {
 Remove-Item -Recurse -Force .\03_eks_cluster\.terraform
+}
+#__________________________________________________________________
 
-Remove-Item -Path .\04_kubernetes\.terraform.lock.hcl
+If (Test-Path .\04_kubernetes\.terraform.lock.hcl) {
+Remove-Item -Path .\04_kubernetes\.terraform.lock.hcl}
+
+If (Test-Path .\04_kubernetes\terraform.tfstate) {
 Remove-Item -Path .\04_kubernetes\terraform.tfstate
+}
+
+If (Test-Path .\04_kubernetes\terraform.tfstate.backup) {
 Remove-Item -Path .\04_kubernetes\terraform.tfstate.backup
+}
+
+If (Test-Path .\04_kubernetes\.terraform) {
 Remove-Item -Recurse -Force .\04_kubernetes\.terraform
+}
+#__________________________________________________________________
 
+
+If (Test-Path .\13_prisma_onboard_account\.terraform.lock.hcl) {
 Remove-Item -Path .\13_prisma_onboard_account\.terraform.lock.hcl
+}
+
+If (Test-Path .\13_prisma_onboard_account\terraform.tfstate) {
 Remove-Item -Path .\13_prisma_onboard_account\terraform.tfstate
+}
+
+If (Test-Path .\13_prisma_onboard_account\terraform.tfstate.backup) {
 Remove-Item -Path .\13_prisma_onboard_account\terraform.tfstate.backup
+}
+
+If (Test-Path .\13_prisma_onboard_account\.terraform) {
 Remove-Item -Recurse -Force .\13_prisma_onboard_account\.terraform
+}
+#__________________________________________________________________
 
+If (Test-Path .\14_prisma_new_policy\.terraform.lock.hcl) {
 Remove-Item -Path .\14_prisma_new_policy\.terraform.lock.hcl
-Remove-Item -Path .\14_prisma_new_policy\terraform.tfstate
-Remove-Item -Path .\14_prisma_new_policy\terraform.tfstate.backup
-Remove-Item -Recurse -Force .\14_prisma_new_policy\.terraform
+}
 
+If (Test-Path .\14_prisma_new_policy\terraform.tfstate) {
+Remove-Item -Path .\14_prisma_new_policy\terraform.tfstate
+}
+
+If (Test-Path .\14_prisma_new_policy\terraform.tfstate.backup) {
+Remove-Item -Path .\14_prisma_new_policy\terraform.tfstate.backup
+}
+
+If (Test-Path .\14_prisma_new_policy\.terraform) {
+Remove-Item -Recurse -Force .\14_prisma_new_policy\.terraform
+}
+#__________________________________________________________________
+
+If (Test-Path .\15_prisma_alert_rule\.terraform.lock.hcl) {
 Remove-Item -Path .\15_prisma_alert_rule\.terraform.lock.hcl
+}
+
+If (Test-Path .\15_prisma_alert_rule\terraform.tfstate) {
 Remove-Item -Path .\15_prisma_alert_rule\terraform.tfstate
+}
+
+If (Test-Path .\15_prisma_alert_rule\terraform.tfstate.backup) {
 Remove-Item -Path .\15_prisma_alert_rule\terraform.tfstate.backup
-Remove-Item -Recurse -Force .\15_prisma_alert_rule\.terraform
+}
+
+If (Test-Path .\15_prisma_alert_rule\.terraform) {
+Remove-Item -Recurse -Force .\15_prisma_alert_rule\.terraform}
+#__________________________________________________________________

@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-5289"
+    bucket   = "tfstate-bucket-umbrella-1626"
     key      = "tfstate/terraform.tfstate-ec2"
     region   = "us-east-1"
 
@@ -157,7 +157,7 @@ data "template_file" "user-data-file" {
 module "instance_3" {
   source = "../../module/ec2_instance"
   name                        = "Instance3-mongoDbServer"
-  ami_filter                  = "aws-parallelcluster-3.6.1-ubuntu-2004-lts-hvm-x86_64-202306301211 2023-06-30T12-15-13.119Z"
+  ami_filter                  = "amzn2-ami-kernel-5.10-hvm-*"
   instance_type               = "t2.micro"
   subnet_id                   = data.aws_subnet.my_public_subnet_1.id
   key_name                    = aws_key_pair.instance.key_name
@@ -171,20 +171,6 @@ module "instance_3" {
 
 #Instance 4 Jenkins
 
-data "aws_ami" "ubuntu" {
-    most_recent = true
-
-    filter {
-        name   = "name"
-        values = ["amzn2-ami-kernel-5.10-hvm-*"]
-    }
-    filter {
-        name   = "virtualization-type"
-        values = ["hvm"]
-    }
-
-   #  owners = ["137112412989"] # Canonical
-}
 
 resource "aws_security_group" "jenkins-sg" {
   vpc_id      = data.aws_vpc.myVPC.id
@@ -216,7 +202,7 @@ resource "aws_security_group" "jenkins-sg" {
 
 
 resource "aws_instance" "jenkins" {
-  ami             = data.aws_ami.ubuntu.id
+  ami             = "ami-061dc0582f86ee66b"
  
   instance_type   = "t2.micro"
   subnet_id = data.aws_subnet.my_public_subnet_1.id

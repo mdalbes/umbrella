@@ -10,7 +10,7 @@ provider aws {
 #Remote State
 module "remote_state" {
   source                     = "../../module/remote-tfstate"
-  tfstate_bucket_name        = "tfstate-bucket-umbrella-5289"
-  dynamodb_name              =  "tfstate-dynamodb-umbrella-5289"
+  tfstate_bucket_name        = "tfstate-bucket-umbrella-1626"
+  dynamodb_name              =  "tfstate-dynamodb-umbrella-1626"
   region                     = module.variables.region
 }

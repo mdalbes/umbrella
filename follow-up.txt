@@ -1,8 +1,4 @@
 ToDo : 
 
-- transformer 03_eks_cluster avec module
-- ajouter la partie Jenkins ( déjà push mais ne marche pas, il faut regarder pour changer le userdata avec une ami aws et utiliser le module déjà en place.)
-- regarder ce que font les scripts dans instances
-- tenter de se connecter au cluster, ensuite au jenkins, puis au wordpress
-- regarder la policy prisma et l'alerte si c'est ok
-- faire le ppt 
+- transformer 03_eks_cluster avec module + jenkins ( mais compliqué avec le userdata et l'ami )
+- préparer le contenu pour les instances ( script etc nmap) 

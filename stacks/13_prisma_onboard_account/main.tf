@@ -4,7 +4,7 @@ module "variables" {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-5289"
+    bucket   = "tfstate-bucket-umbrella-1626"
     key      = "tfstate/terraform.tfstate-prisma-onboard-account"
     region   = "us-east-1"
 
@@ -28,8 +28,8 @@ provider "prismacloud" {
 
 module "account_1" {
   source = "../../module/prisma_onboard_account"
-  name                        = "terraform-account-prisma-umbrella-5289"
+  name                        = "terraform-account-prisma-umbrella-1626"
   aws_account_id              = module.variables.aws_account_id_1
   # existing_account_group_name = module.variables.existing_account_group_name_1
-  new_account_group_name      = "acg-umbrella-5289"
+  new_account_group_name      = "acg-umbrella-1626"
 }

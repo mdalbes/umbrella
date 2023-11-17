@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-5289"
+    bucket   = "tfstate-bucket-umbrella-1626"
     key      = "tfstate/terraform.tfstate-eks"
     region   = "us-east-1"
 
@@ -44,7 +44,7 @@ resource "aws_eks_cluster" "Umbrella-EKS-Cluster" {
     service_ipv4_cidr = "10.100.0.0/16"
   }
 
-  name     = "EKS-Cluster-umbrella-5289"
+  name     = "EKS-Cluster-umbrella-1626"
   role_arn = aws_iam_role.Umbrella-AmazonEKSClusterRole.arn
   version  = "1.27"
 
@@ -57,7 +57,7 @@ resource "aws_eks_cluster" "Umbrella-EKS-Cluster" {
 }
 
 resource "aws_iam_policy" "Umbrella-eksWorkNodeEBSPolicy" {
-  name = "eksWorkNodeEBSPolicy-umbrella-5289"
+  name = "eksWorkNodeEBSPolicy-umbrella-1626"
 
   policy = <<POLICY
 {
@@ -87,7 +87,7 @@ POLICY
 }
 
 resource "aws_iam_policy" "Umbrella-MongoDBPolicy" {
-  name = "MongoDBPolicy-umbrella-5289"
+  name = "MongoDBPolicy-umbrella-1626"
   path = "/"
 
   policy = <<POLICY
@@ -124,7 +124,7 @@ POLICY
   description          = "Allows EC2 instances to call AWS services on your behalf."
   managed_policy_arns  = ["arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly", "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy", "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy","${aws_iam_policy.Umbrella-eksWorkNodeEBSPolicy.arn}"]
   max_session_duration = "3600"
-  name                 = "AmazonEKSNodeRole-umbrella-5289"
+  name                 = "AmazonEKSNodeRole-umbrella-1626"
   path                 = "/"
 }
 
@@ -147,7 +147,7 @@ POLICY
   description          = "Allows access to other AWS service resources that are required to operate clusters managed by EKS."
   managed_policy_arns  = ["arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"]
   max_session_duration = "3600"
-  name                 = "AmazonEKSClusterRole-umbrella-5289"
+  name                 = "AmazonEKSClusterRole-umbrella-1626"
   path                 = "/"
 }
 
@@ -170,7 +170,7 @@ POLICY
   description          = "Allows EC2 instances to call AWS services on your behalf."
   managed_policy_arns  = [aws_iam_policy.Umbrella-MongoDBPolicy.arn,"arn:aws:iam::aws:policy/AmazonS3FullAccess"]
   max_session_duration = "3600"
-  name                 = "MongoDBRole-umbrella-5289"
+  name                 = "MongoDBRole-umbrella-1626"
   path                 = "/"
 }
 
@@ -185,7 +185,7 @@ resource "aws_eks_node_group" "Umbrella-EKS-NodeGrp" {
   cluster_name    = "${aws_eks_cluster.Umbrella-EKS-Cluster.name}"
   disk_size       = "20"
   instance_types  = ["t3.medium"]
-  node_group_name = "EKS-NodeGrp-umbrella-5289"
+  node_group_name = "EKS-NodeGrp-umbrella-1626"
   node_role_arn   = aws_iam_role.Umbrella-AmazonEKSNodeRole.arn
   release_version = nonsensitive(data.aws_ssm_parameter.eks_ami_release_version.value)
 
