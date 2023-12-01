@@ -7,7 +7,7 @@
 variable "myIP" {
   description = "myIP"
   type        = string
-  default     = "130.41.123.109/32"
+  default     = "52.47.138.194/32"
 }
 
 output "myIP" {
@@ -24,7 +24,7 @@ output "myIP" {
 
 variable "aws_account_id_1" {
   type = string
-  default = "962381906359"
+  default = "541734770507"
 }
 output "aws_account_id_1" {
   value = var.aws_account_id_1

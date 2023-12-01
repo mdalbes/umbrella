@@ -4,7 +4,7 @@ module "variables" {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-1626"
+    bucket   = "tfstate-bucket-umbrella-6260"
     key      = "tfstate/terraform.tfstate-prisma-new-policy"
     region   = "us-east-1"
 
@@ -29,12 +29,12 @@ provider "prismacloud" {
 module "policy_1" {
   source            = "../../module/prisma_policy"
   search_type       = module.variables.search_type_1
-  query             = "config from cloud.resource where cloud.account = 'acg-umbrella-1626' and api.name = 'aws-ec2-describe-security-groups' AND json.rule = ipPermissions[*].toPort is not member of (443,80)"
+  query             = "config from cloud.resource where cloud.account = 'acg-umbrella-6260' and api.name = 'aws-ec2-describe-security-groups' AND json.rule = ipPermissions[*].toPort is not member of (443,80)"
   unit              = module.variables.unit_1
   amount            = module.variables.amount_1
-  savedsearch_name  = "saved-search-umbrella-1626"
-  policy_name       = "policy-umbrella-1626"
-  rule_name         = "rule-name-umbrella-1626"
+  savedsearch_name  = "saved-search-umbrella-6260"
+  policy_name       = "policy-umbrella-6260"
+  rule_name         = "rule-name-umbrella-6260"
   policy_type       = module.variables.policy_type_1
   rule_type         = module.variables.rule_type_1
 }

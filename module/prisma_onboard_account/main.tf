@@ -38,8 +38,8 @@ resource "prismacloud_cloud_account_v2" "aws_account_onboarding" {
         name = var.name // should be unique for each account
         account_id = var.aws_account_id
         group_ids = [
-            //data.prismacloud_account_group.existing_account_group_id.group_id,// To use existing Account Group
-            prismacloud_account_group.new_account_group.group_id, // To create new Account group
+            data.prismacloud_account_group.existing_account_group_id.group_id,// To use existing Account Group
+            //prismacloud_account_group.new_account_group.group_id, // To create new Account group
         ]
         role_arn = "${aws_cloudformation_stack.prismacloud_iam_role_stack.outputs.PrismaCloudRoleARN}" // IAM role arn from step 3
         features {              // feature names from step 1
@@ -59,6 +59,6 @@ data "prismacloud_account_group" "existing_account_group_id" {
 }
 
 // To create a new account group, if required
-resource "prismacloud_account_group" "new_account_group" {
-    name = var.new_account_group_name // Account group name to be creatd
-}
+// resource "prismacloud_account_group" "new_account_group" {
+//     name = var.new_account_group_name // Account group name to be creatd
+// }

@@ -31,5 +31,5 @@ module "account_1" {
   name                        = "terraform-account-prisma-umbrella-0000"
   aws_account_id              = module.variables.aws_account_id_1
   # existing_account_group_name = module.variables.existing_account_group_name_1
-  new_account_group_name      = "acg-umbrella-0000"
+  new_account_group_name      = "acloudguru-umbrella-0000"
 }

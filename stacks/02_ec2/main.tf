@@ -10,7 +10,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-1626"
+    bucket   = "tfstate-bucket-umbrella-6260"
     key      = "tfstate/terraform.tfstate-ec2"
     region   = "us-east-1"
 
@@ -210,7 +210,7 @@ resource "aws_instance" "jenkins" {
   key_name        = aws_key_pair.instance.key_name
   provisioner "remote-exec" {
     inline = [
-      "curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee  /usr/share/keyrings/jenkins-keyring.asc > /dev/null",
+      "curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee  /usr/share/keyrings/jenkins-keyring.asc > /dev/null",
       "echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]   https://pkg.jenkins.io/debian-stable binary/ | sudo tee  /etc/apt/sources.list.d/jenkins.list > /dev/null",
       "sudo apt-get update",
       "sudo apt update",

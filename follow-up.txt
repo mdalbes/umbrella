@@ -1,4 +1,0 @@
-ToDo : 
-
-- transformer 03_eks_cluster avec module + jenkins ( mais compliqué avec le userdata et l'ami )
-- préparer le contenu pour les instances ( script etc nmap) 

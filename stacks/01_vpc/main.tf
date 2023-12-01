@@ -11,7 +11,7 @@ provider aws {
 
 terraform {
   backend "s3" {
-    bucket   = "tfstate-bucket-umbrella-1626"
+    bucket   = "tfstate-bucket-umbrella-6260"
     key      = "tfstate/terraform.tfstate-vpc"
     region   = "us-east-1"
 
